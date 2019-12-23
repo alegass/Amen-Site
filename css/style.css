@@ -643,14 +643,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* About Us Section
 --------------------------------*/
 
-#about {
+#salud {
   background: url("../img/about-bg.jpg") center top no-repeat fixed;
   background-size: cover;
   padding: 60px 0 40px 0;
   position: relative;
 }
 
-#about::before {
+#salud::before {
   content: '';
   position: absolute;
   left: 0;
@@ -661,27 +661,27 @@ body.mobile-nav-active #mobile-nav-toggle {
   z-index: 9;
 }
 
-#about .container {
+#salud .container {
   position: relative;
   z-index: 10;
 }
 
-#about .about-col {
+#salud .about-col {
   background: #fff;
   border-radius: 0 0 4px 4px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 20px;
 }
 
-#about .about-col .img {
+#salud .about-col .img {
   position: relative;
 }
 
-#about .about-col .img img {
+#salud .about-col .img img {
   border-radius: 4px 4px 0 0;
 }
 
-#about .about-col .icon {
+#salud .about-col .icon {
   width: 64px;
   height: 64px;
   padding-top: 8px;
@@ -696,22 +696,22 @@ body.mobile-nav-active #mobile-nav-toggle {
   transition: 0.3s;
 }
 
-#about .about-col i {
+#salud .about-col i {
   font-size: 36px;
   line-height: 1;
   color: #fff;
   transition: 0.3s;
 }
 
-#about .about-col:hover .icon {
+#salud .about-col:hover .icon {
   background-color: #fff;
 }
 
-#about .about-col:hover i {
+#salud .about-col:hover i {
   color: #FF0000;
 }
 
-#about .about-col h2 {
+#salud .about-col h2 {
   color: #000;
   text-align: center;
   font-weight: 700;
@@ -720,15 +720,15 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin: 40px 0 12px 0;
 }
 
-#about .about-col h2 a {
+#salud .about-col h2 a {
   color: #000;
 }
 
-#about .about-col h2 a:hover {
+#salud .about-col h2 a:hover {
   color: #FF0000;
 }
 
-#about .about-col p {
+#salud .about-col p {
   font-size: 14px;
   line-height: 24px;
   color: #333;
