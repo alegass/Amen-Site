@@ -597,6 +597,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   background: #f7f7f7;
 }
 
+.section{
+  padding: 60px 0 40px 0;
+}
+
 /* Featured Services Section
 --------------------------------*/
 
@@ -638,6 +642,28 @@ body.mobile-nav-active #mobile-nav-toggle {
   line-height: 24px;
   color: #fff;
   margin-bottom: 0;
+}
+
+#educacion {
+  background: url("../img/centroeducativo/1.jpg") center top no-repeat fixed;
+  background-size: cover;
+  position: relative;
+}
+
+#educacion::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 9;
+}
+
+#educacion .container {
+  position: relative;
+  z-index: 10;
 }
 
 /* About Us Section
