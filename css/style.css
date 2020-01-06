@@ -217,6 +217,8 @@ h6 {
   top: 0;
   left: 0;
   right: 0;
+
+  background: rgba(255, 255, 255, 0.25);
 }
 
 #intro .carousel-background img {
@@ -670,7 +672,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------*/
 
 #salud {
-  background: url("../img/about-bg.jpg") center top no-repeat fixed;
+  background: url("../img/intro-carousel/b3152204c9f8c730e88f6b9ef1c7bf7b.jfif") center top no-repeat fixed;
   background-size: cover;
   padding: 60px 0 40px 0;
   position: relative;
