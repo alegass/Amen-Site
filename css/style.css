@@ -1388,7 +1388,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #contact .form button[type="submit"]:hover {
-  background: #13a456;
+  background: #FFFFFF;
+  color: #FF0000;
 }
 
 /*--------------------------------------------------------------
