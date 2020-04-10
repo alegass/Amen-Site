@@ -9,10 +9,28 @@
 # General
 --------------------------------------------------------------*/
 
+.containerExpander {
+  width:100%;  
+}
+.containerExpander div {
+  width:100%;
+}
+.containerExpander .headerExpander {
+  padding: 2px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.containerExpander .contentExpander {
+  display: none;
+  padding : 5px;
+}
+
 body {
   background: #fff;
   color: #666666;
+  /*font-family: 'Calibri', sans-serif;*/
   font-family: "Open Sans", sans-serif;
+
 }
 
 a {
