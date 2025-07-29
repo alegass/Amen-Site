@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Torneo de Poker - Sheetrock</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/sheetrock@1.0.0/dist/sheetrock.min.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+    h2 { margin-top: 50px; }
+    .mesa-redonda {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 40px auto;
+      border-radius: 50%;
+      border: 5px solid #444;
+      background: #2c2c2c;
+    }
+    .jugador {
+      position: absolute;
+      width: 90px;
+      height: 40px;
+      background: #eee;
+      border-radius: 8px;
+      text-align: center;
+      line-height: 40px;
+      font-weight: bold;
+      transform: translate(-50%, -50%);
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th { background-color: #333; color: white; }
+  </style>
+</head>
+<body>
+
+<h1>🏆 Torneo de Poker</h1>
+
+<div id="contenedor"></div>
+
+<script>
+const SHEET_ID = '1-cWzE0v5rMxJwUTdiEeTQk3fUHs98rrvgy4SVeVpTE4'; // <- Reemplazá con tu ID real
+const mesas = ['Mesa 1', 'Mesa 2', 'Mesa 3'];
+const recompras = ['Recompras 1', 'Recompras 2', 'Recompras 3'];
+
+mesas.forEach((mesaNombre, i) => {
+  const recomprasNombre = recompras[i];
+  const contenedor = document.getElementById("contenedor");
+
+  const seccion = document.createElement('div');
+  seccion.innerHTML = `<h2>${mesaNombre}</h2><div id="mesa-${i}"></div><h3>💸 Recompras por Persona</h3><table id="tabla-${i}"><tr><th>Nombre</th><th>Recompras</th><th>Total $</th></tr></table>`;
+  contenedor.appendChild(seccion);
+
+  // Leer jugadores
+  $.sheetrock({
+    url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit#gid=0`,
+    query: `select C where C != '' limit 9`,
+    sheet: mesaNombre,
+    callback: function(error, options, response) {
+      const nombres = response.rows.slice(1).map(row => row.cellsArray[0]);
+      const mesaDiv = document.getElementById(`mesa-${i}`);
+      const mesaVisual = document.createElement('div');
+      mesaVisual.className = 'mesa-redonda';
+
+      nombres.forEach((nombre, index) => {
+        const ang = (2 * Math.PI * index) / nombres.length;
+        const x = 150 + 120 * Math.cos(ang);
+        const y = 150 + 120 * Math.sin(ang);
+        const div = document.createElement('div');
+        div.className = 'jugador';
+        div.style.left = `${x}px`;
+        div.style.top = `${y}px`;
+        div.id = `jugador-${i}-${nombre.replace(/\s+/g, '')}`;
+        div.textContent = nombre;
+        mesaVisual.appendChild(div);
+      });
+      mesaDiv.appendChild(mesaVisual);
+    }
+  });
+
+  // Leer recompras
+  $.sheetrock({
+    url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit#gid=0`,
+    query: `select B where B != ''`,
+    sheet: recomprasNombre,
+    callback: function(error, options, response) {
+      const nombres = response.rows.slice(1).map(row => row.cellsArray[0]);
+      const contador = {};
+      nombres.forEach(n => contador[n] = (contador[n] || 0) + 1);
+
+      Object.entries(contador).forEach(([nombre, cant]) => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `<td>${nombre}</td><td>${cant}</td><td>$${cant * 5000}</td>`;
+        document.getElementById(`tabla-${i}`).appendChild(fila);
+
+        const idJugador = `jugador-${i}-${nombre.replace(/\s+/g, '')}`;
+        const jugador = document.getElementById(idJugador);
+        if (jugador) jugador.textContent = `${nombre} (${cant})`;
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
